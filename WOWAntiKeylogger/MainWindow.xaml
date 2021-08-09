@@ -1,0 +1,41 @@
+﻿<Window x:Class="WOWAntiKeylogger.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" 
+        Height="440" 
+        Width="600" 
+        Background="Black" 
+        WindowStartupLocation="CenterOwner" 
+        Icon="/WOWAntiKeylogger;component/logo.ico" 
+        Closing="Window_Closing" 
+        xmlns:av="http://schemas.codeplex.com/wpfcontrib/xaml/presentation" ResizeMode="CanMinimize" ShowInTaskbar="False" WindowStyle="None" Loaded="Window_Loaded">
+    <Grid Height="450" Width="660">
+        <Thumb Name="DraggableThumb" Height="450" Width="660" Opacity="0" DragDelta="DraggableThumb_DragDelta" Panel.ZIndex="1"></Thumb>
+        <Image Name="TopImage" Height="129" Width="660" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="-80,0,0,0" Source="/WOWAntiKeylogger;component/Images/topborder_split.png" />
+        <Image Name="BottomImage" Height="97" Width="660" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,0,10" Source="/WOWAntiKeylogger;component/Images/bottomborder_split.png" />
+        <Image Name="LockStatusImage" Height="48" Width="48" VerticalAlignment="top" HorizontalAlignment="Left" Margin="20,35,0,0" Source="/WOWAntiKeylogger;component/Images/lock_48x48.png" />
+        <Image Name="UnLockStatusImage" Height="48" Width="48" VerticalAlignment="top" HorizontalAlignment="Left" Margin="20,35,0,0" Source="/WOWAntiKeylogger;component/Images/unlock_48x48.png" Visibility="Hidden"/>
+        <Label Name="TitleLabel" Height="69" Width="359" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="70,30,0,0" FontSize="36" Foreground="#FFD8B248" FontFamily="Morpheus" Content="WOWAntiKeylogger" />
+        <Image Name="minimizeButton" Height="32" Width="32" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,120,0" Stretch="Fill" Source="/WOWAntiKeylogger;component/Images/minimize.bmp" Cursor="Hand" MouseUp="minimizeButton_MouseUp" ToolTip="Minimize to tray" Panel.ZIndex="1"/>
+        <Image Name="mainExitButton" Height="32" Width="32" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,50,80,0" Stretch="Fill" Source="/WOWAntiKeylogger;component/Images/delete.png" Cursor="Hand" MouseUp="mainExitButton_MouseUp" ToolTip="Close program" Panel.ZIndex="1"/>
+        <av:NotifyIcon Name="trayIcon" VerticalAlignment="Top" Icon="/WOWAntiKeylogger;component/logo.ico" DoubleClick="trayIcon_DoubleClick">
+            <FrameworkElement.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Name="openConfigButton" Header="Open Configuration" Click="openConfigButton_Click" />
+                    <MenuItem Name="enableAntiKeyloggerButton" Header="Enable Protection" Click="enableAntiKeyloggerButton_Click" />
+                    <MenuItem Name="disableAntiKeyloggerButton" Header="Disable Protection" Click="disableAntiKeyloggerButton_Click" />
+                    <MenuItem Name="exitButton" Header="Exit" Click="exitButton_Click" />
+                </ContextMenu>
+            </FrameworkElement.ContextMenu>
+        </av:NotifyIcon>
+        <CheckBox Name="antiKeyloggerCheckBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,240,0,0" Content="Enable AntiKeylogger" Foreground="#FFD8B248" FontFamily="Morpheus" FontSize="16" Checked="antiKeyloggerCheckBox_Checked" Unchecked="antiKeyloggerCheckBox_Unchecked" IsChecked="True" ToolTip="Blocks keystrokes from being captured by other applicaitons" Panel.ZIndex="1"/>
+        <CheckBox Name="keyloggerCheckBox" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="240, 240,0,0" Content="Enable Test Keylogger" Foreground="#FFD8B248" FontFamily="Morpheus" FontSize="16" Checked="keyloggerCheckBox_Checked" Unchecked="keyloggerCheckBox_Unchecked" ToolTip="Enables keystrokes to be captured from other applicaitons" Panel.ZIndex="1"/>
+        <Label Name="label1" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="30,110,0,0" FontFamily="Morpheus" FontSize="16" Foreground="#FFD8B248" Content="To test the antikeylogger:"/>
+        <TextBlock Name="textblock1" Width="520" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="50,150,0,0" FontFamily="Arial" FontSize="12" Foreground="#FFD8B248" TextWrapping="WrapWithOverflow">
+            Disable the antikylogger and enable the test keylogger. Open several programs alongside this window and type. This will show your keystrokes being captured in the system. Now enable the antikeylogger and try typing in an application again. This shows your keystrokes cannot be captured, proving you are secured from viruses and spyware that monitor your keystrokes.
+        </TextBlock>
+        <TextBox Name="capturedKeystrokesTextBox" Height="96" Width="520" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="40,270,0,0" MinLines="1" Text="" TextWrapping="WrapWithOverflow" IsReadOnly="True" />
+        <Label Name="helpLabel" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="0,0,80,40" Content="Help Online" FontFamily="Arial" FontSize="12" Foreground="#FFD8B248" Cursor="Hand" MouseUp="helpLabel_MouseUp" Panel.ZIndex="1"/>
+        <Label Name="MinimizeLabel" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="360,115,0,0" Content="Minimizing on start up in: 5" FontFamily="Arial" FontSize="12" Foreground="#FFD1CDB9" Panel.ZIndex="1"/>
+    </Grid>
+</Window>

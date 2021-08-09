@@ -1,0 +1,111 @@
+﻿<Page x:Class="AvalonLibraryTest.Pages.Text"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:av="http://schemas.codeplex.com/wpfcontrib/xaml/presentation"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    Title="Text">
+    <FrameworkElement.Resources>
+        <sys:String x:Key="str">
+            I am leaving this harbour
+            giving urban a farewell
+            its habitants seem too keen on God
+            I cannot stomach their rights and wrong
+
+            I have lost my origin
+            and I don't want to find it again
+            rather sailing into nature's laws
+            and be held by ocean's paws
+            
+            (Wanderlust, Volta, Björk)
+        </sys:String>
+    </FrameworkElement.Resources>
+    <av:AutoGrid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.5*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="0.5*" />
+        </Grid.RowDefinitions>
+        <TextBlock FontWeight="Bold" Text="AnimatedTextBlock" />
+        <DockPanel>
+            <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+                <TextBlock Text="Segment Length" Margin="5" />
+                <ComboBox Margin="5" SelectedItem="{Binding ElementName=tb, Path=SegmentLength}">
+                    <sys:Int32>1</sys:Int32>
+                    <sys:Int32>2</sys:Int32>
+                    <sys:Int32>3</sys:Int32>
+                    <sys:Int32>4</sys:Int32>
+                    <sys:Int32>5</sys:Int32>
+                    <sys:Int32>6</sys:Int32>
+                    <sys:Int32>7</sys:Int32>
+                    <sys:Int32>8</sys:Int32>
+                    <sys:Int32>9</sys:Int32>
+                    <sys:Int32>10</sys:Int32>
+                </ComboBox>
+                <TextBlock Text="Mode" Margin="5" />
+                <ComboBox Margin="5" SelectedItem="{Binding ElementName=tb, Path=Mode}">
+                    <av:AnimatedTextMode>None</av:AnimatedTextMode>
+                    <av:AnimatedTextMode>Reveal</av:AnimatedTextMode>
+                    <av:AnimatedTextMode>Hide</av:AnimatedTextMode>
+                    <av:AnimatedTextMode>RevealAndHide</av:AnimatedTextMode>
+                    <av:AnimatedTextMode>Spotlight</av:AnimatedTextMode>
+                </ComboBox>
+                <TextBlock Text="Order" Margin="5" />
+                <ComboBox Margin="5" SelectedItem="{Binding ElementName=tb, Path=Order}">
+                    <av:AnimatedTextOrder>Forward</av:AnimatedTextOrder>
+                    <av:AnimatedTextOrder>Backward</av:AnimatedTextOrder>
+                    <av:AnimatedTextOrder>Random</av:AnimatedTextOrder>
+                </ComboBox>
+                <CheckBox Content="Continuous" Margin="5" Checked="CheckBox_Checked" Unchecked="CheckBox_Checked" IsChecked="True" />
+            </StackPanel>
+            <av:AnimatedTextBlock x:Name="tb" Text="{StaticResource str}" FontSize="20" FontWeight="Bold" Foreground="HotPink" RepeatBehavior="Forever"
+                               FontFamily="Palatino Linotype" Typography.Capitals="SmallCaps" TextWrapping="Wrap" TextAlignment="Justify" />
+        </DockPanel>
+        <Border>
+            <TextBlock FontWeight="Bold" Text="GdiTextBlock" />
+        </Border>
+        <DockPanel>
+            <FrameworkElement.Resources>
+                <Style x:Key="colorItem" TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="{Binding Value}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="FontWeight" Value="Bold" />
+                            <Setter Property="FontSize" Value="16" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </FrameworkElement.Resources>
+            <StackPanel Orientation="Horizontal" Grid.ColumnSpan="2" DockPanel.Dock="Top">
+                <TextBlock Text="Text Size" />
+                <TextBlock Margin="10,0,10,0" Width="20" Text="{Binding ElementName=textSize, Path=Value}" />
+                <Slider Name="textSize" Width="100" Minimum="6" Maximum="20" LargeChange="2" SmallChange="1" Value="10" IsSnapToTickEnabled="True" />
+                <TextBlock Margin="10,0,10,0" Text="Background" />
+                <ComboBox Name="bgColor" Width="100" DisplayMemberPath="Key" SelectedValuePath="Value" ItemContainerStyle="{StaticResource colorItem}" />
+                <TextBlock Margin="10,0,10,0" Text="Foreground" />
+                <ComboBox Name="fgColor" Width="100" DisplayMemberPath="Key" SelectedValuePath="Value" ItemContainerStyle="{StaticResource colorItem}" />
+            </StackPanel>
+            <Grid Background="{Binding ElementName=bgColor, Path=SelectedValue}"
+              TextBlock.Foreground="{Binding ElementName=fgColor, Path=SelectedValue}"
+              TextBlock.FontFamily="Times New Roman"
+              TextBlock.FontSize="{Binding ElementName=textSize, Path=Value}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+                <Label Content="GDI+" />
+                <Label Content="WPF" Grid.Column="1" />
+                <ScrollViewer Name="gdiScroll" Grid.Row="1" ScrollChanged="ScrollViewer_ScrollChanged">
+                    <av:GdiTextBlock Text="{StaticResource str}" TextWrapping="Wrap" TextTrimming="WordEllipsis" />
+                </ScrollViewer>
+                <ScrollViewer Name="wpfScroll" Grid.Row="1" Grid.Column="1" ScrollChanged="ScrollViewer_ScrollChanged">
+                    <TextBlock Grid.Column="1" Text="{StaticResource str}" TextWrapping="Wrap" TextTrimming="WordEllipsis" />
+                </ScrollViewer>
+            </Grid>
+        </DockPanel>
+    </av:AutoGrid>
+</Page>

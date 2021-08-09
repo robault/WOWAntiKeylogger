@@ -1,0 +1,291 @@
+﻿<Page x:Class="AvalonLibraryTest.Pages.Introduction"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:av="http://schemas.codeplex.com/wpfcontrib/xaml/presentation"
+    xmlns:loc="clr-namespace:AvalonLibraryTest.Pages"
+    Title="Introduction">
+    <Border CornerRadius="10">
+        <Border.Background>
+            <LinearGradientBrush EndPoint="0,1">
+                <GradientStop Color="Transparent" Offset="0" />
+                <GradientStop Color="MediumVioletRed" Offset="1" />
+            </LinearGradientBrush>
+        </Border.Background>
+
+        <Grid>
+            <TextBlock Margin="10">
+            <Bold FontSize="16">Welcome to the WPF Contrib Library</Bold>
+            <Run>(October 2008)</Run>
+            <LineBreak/>
+            Please select a demo from the left.
+            </TextBlock>
+            <Viewbox Name="Logo" Stretch="Uniform" Width="256" Height="256" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="20">
+                <Grid Name="LogoInt" Width="248.746333333333" Height="224.470333333333">
+                    <Grid Margin="0,0,27.411,11.136">
+                        <Path Opacity="1" RenderTransformOrigin="0.526354898459016,0.499997692449065" Visibility="Visible" Stretch="Fill" StrokeThickness="4" x:Name="WhiteLayer" Data="F1 M85.334503,79.666496 C159.61681,79.666496 219.8345,126.75137 219.8345,184.8335 219.8345,242.91563 159.61681,290.00049 85.334503,290.00049 C60.138317,290.00049 36.560307,284.58322 16.455292,275.04224 C6.9048123,248.43103 1.5,217.63823 1.5000001,184.83299 C1.5,152.02826 6.9046459,121.23592 16.454826,94.624962 C36.559944,85.083847 60.138123,79.666496 85.334503,79.666496 z">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    <SkewTransform AngleX="0" AngleY="0"/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform X="0" Y="0"/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FFD4D4D4" Offset="0.317"/>
+                                    <GradientStop Color="#FFFFFFFF" Offset="1"/>
+                                    <GradientStop Color="#FFF6F6F6" Offset="0.646"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                            <Path.Stroke>
+                                <LinearGradientBrush EndPoint="0,0.5" StartPoint="1,0.5">
+                                    <GradientStop Color="#FFD7D5D6" Offset="0.265"/>
+                                    <GradientStop Color="#FFF2F2F2" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                        </Path>
+                        <Path Opacity="1" RenderTransformOrigin="0.526802465343027,0.499997685324003" Stretch="Fill" StrokeThickness="1.5" x:Name="BlueLayer" Data="F1 M78.75901,86.752747 L165.62912,86.752747 C163.05687,125.6938 126.2245,157.35135 78.75901,162.84941 L78.75901,86.752747 z M0.66531348,86.752747 L71.25901,86.752747 71.25901,163.52736 C68.769234,163.7579 66.249634,163.832 63.708374,163.832 44.561031,163.832 26.643387,159.62531 11.36498,152.21637 4.5447655,132.79744 0.94814861,110.51102 0.66531348,86.752747 z M78.75901,1.4825896 C126.09159,6.9649749 162.85046,38.461086 165.60847,77.252747 L78.75901,77.252747 78.75901,1.4825896 z M63.708374,0.50000161 L71.25901,0.8046397 71.25901,77.252747 0.67704874,77.252747 C0.98111969,53.616718 4.5758376,31.445681 11.364624,12.115795 26.643112,4.7067714 44.560883,0.50000107 63.708374,0.50000161 z" Margin="29.25,20.5,26.121,28.502">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    <SkewTransform AngleX="0" AngleY="0"/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform X="0.26317744922954489" Y="-0.26317744922951647"/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FF273A91" Offset="0.006"/>
+                                    <GradientStop Color="#FF619BFF" Offset="0.87"/>
+                                    <GradientStop Color="#FF446BC9" Offset="0.545"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                            <Path.Stroke>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#FF283C94" Offset="0.01"/>
+                                    <GradientStop Color="#FF719DEC" Offset="0.999"/>
+                                </LinearGradientBrush>
+                            </Path.Stroke>
+                        </Path>
+                        <Path Opacity="1" RenderTransformOrigin="0.526354898459016,0.499997692449065" Fill="#FFFFFFFF" Stretch="Fill" Stroke="{x:Null}" StrokeThickness="1" x:Name="Shine_White" Data="F1 M85.334503,79.666496 C159.61681,79.666496 219.8345,126.75137 219.8345,184.8335 219.8345,242.91563 159.61681,290.00049 85.334503,290.00049 60.138317,290.00049 38.480826,284.58322 18.375811,275.04224 8.8253312,248.43103 1.9521852,217.63823 1.9521853,184.83299 1.9521852,152.02826 8.8251648,121.23592 18.375345,94.624962 38.480463,85.083847 60.138123,79.666496 85.334503,79.666496 z" ClipToBounds="False" StrokeDashCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" StrokeStartLineCap="Round" Margin="46.75,10.25,42.227,46.752">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                                    <SkewTransform AngleX="0" AngleY="0"/>
+                                    <RotateTransform Angle="90"/>
+                                    <TranslateTransform X="0.19738308692214446" Y="-0.19738308692212314"/>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                            <Path.OpacityMask>
+                                <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                    <GradientStop Color="#DA000000" Offset="0"/>
+                                    <GradientStop Color="#00FFFFFF" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.OpacityMask>
+                        </Path>
+                    </Grid>
+                    <Viewbox Stretch="Fill" Margin="119.5,92,0,0" BitmapEffect="{av:DropShadowBitmapEffect ShadowDepth=2}">
+                        <Grid Width="238.52" Height="244.470333333333">
+                            <Path Stroke="#FFDEBF96" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M51.30,17.40C57.80,16.00,64.40,14.70,71.00,15.00C84.30,15.60,97.70,18.70,108.90,26.00L109.10,26.90C105.80,28.20,102.50,29.40,99.00,29.80C83.60,32.10,67.60,32.50,53.30,39.40C49.70,40.90,47.10,43.90,43.70,45.80C40.30,46.30,36.50,45.40,33.90,43.00C31.80,40.20,31.90,36.40,31.60,33.00C34.00,28.50,37.80,24.90,41.50,21.50C44.20,19.00,47.80,18.30,51.30,17.40z" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.119,0.073">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.026" ScaleY="1.403"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="-0.048" Y="0.173"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFEEE5BE" Offset="0"/>
+                                        <GradientStop Color="#FFB4A35D" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF85643B" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M99.00,29.80C102.50,29.40,105.80,28.20,109.10,26.90C110.80,27.20,110.60,29.60,110.00,30.80C107.60,35.50,104.10,39.70,99.80,42.80L99.10,42.80C91.40,41.80,83.60,40.30,76.00,42.00C69.90,43.30,64.50,46.80,58.40,48.20C53.90,49.30,49.00,47.90,44.60,49.60C41.50,52.60,42.20,57.60,41.40,61.50C39.70,61.50,38.00,61.40,36.20,61.40C35.20,66.90,36.40,72.50,38.60,77.50C40.10,80.90,43.80,83.10,44.30,86.90C45.60,95.20,49.00,103.00,54.70,109.20C54.70,109.30,54.90,109.50,55.00,109.60C55.30,110.70,55.70,111.80,56.00,113.00C53.20,113.30,50.50,113.60,47.70,113.90C45.20,113.40,42.70,112.80,40.20,112.20C33.00,109.80,26.90,104.10,24.00,97.00C19.30,85.50,19.50,72.60,21.80,60.60C23.40,50.90,27.00,41.70,31.60,33.00C31.90,36.40,31.80,40.20,33.90,43.00C36.50,45.40,40.30,46.30,43.70,45.80C47.10,43.90,49.70,40.90,53.30,39.40C67.60,32.50,83.60,32.10,99.00,29.80z" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Path.Fill>
+                                    <RadialGradientBrush>
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.419" ScaleY="1.367"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.209" Y="0.028"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF7E6839" Offset="0.711"/>
+                                        <GradientStop Color="#FFCCB87E" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF403F3D" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M145.80,40.80C157.20,39.30,169.10,39.70,179.90,44.20C182.50,45.30,184.70,47.00,186.80,48.90L186.50,49.30C186.20,49.70,185.60,50.60,185.30,51.00C185.60,52.60,186.00,54.10,186.40,55.60C181.60,59.00,179.40,65.30,173.90,67.80C171.60,69.00,169.20,70.00,166.80,71.10C162.90,68.70,158.90,66.40,154.40,65.80C142.10,64.20,129.40,67.00,117.20,64.00C115.30,61.60,113.50,59.10,112.40,56.30C121.50,47.80,133.70,43.20,145.80,40.80z" OpacityMask="{x:Null}" Margin="0,0,51.659,0" VerticalAlignment="Top">
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.009,0.562">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.007" ScaleY="1.342"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.003" Y="0.171"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF8C8C8C" Offset="0"/>
+                                        <GradientStop Color="#FF454545" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FFDEBF96" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M76.00,42.00C83.60,40.30,91.40,41.80,99.10,42.80C97.70,44.30,95.90,45.80,96.30,48.00C96.80,52.00,97.80,55.90,97.40,60.00C97.00,65.10,98.20,70.40,96.70,75.40C94.70,81.00,94.40,87.00,92.40,92.60C90.80,97.50,88.00,101.90,85.70,106.60C84.60,109.00,82.40,110.60,80.20,111.90C72.10,115.10,62.30,114.60,55.00,109.60C54.90,109.50,54.70,109.30,54.70,109.20C49.00,103.00,45.60,95.20,44.30,86.90C43.80,83.10,40.10,80.90,38.60,77.50C36.40,72.50,35.20,66.90,36.20,61.40C38.00,61.40,39.70,61.50,41.40,61.50C42.20,57.60,41.50,52.60,44.60,49.60C49.00,47.90,53.90,49.30,58.40,48.20C64.50,46.80,69.90,43.30,76.00,42.00z" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Path.Fill>
+                                    <RadialGradientBrush>
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="0.994" ScaleY="1.034"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="-0.092" Y="-0.132"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFF7ECCA" Offset="0"/>
+                                        <GradientStop Color="#FFB38E67" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Fill="#FF3E3E3E" Stroke="#FF403F3D" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M185.30,51.00C185.60,50.60,186.20,49.70,186.50,49.30C192.30,54.70,194.30,62.90,195.80,70.40C197.80,81.70,196.80,93.70,192.40,104.40C190.00,109.80,186.30,115.30,180.50,117.50C180.00,115.10,182.30,113.40,183.20,111.40C185.20,107.70,186.80,103.40,186.70,99.10C186.60,96.10,184.00,93.40,180.90,93.30C177.50,93.40,174.20,94.70,170.80,95.20C170.40,90.90,170.80,86.50,170.50,82.10C170.30,78.20,168.50,74.60,166.80,71.10C169.20,70.00,171.60,69.00,173.90,67.80C179.40,65.30,181.60,59.00,186.40,55.60C186.00,54.10,185.60,52.60,185.30,51.00z" Margin="0,0,41.744,0" VerticalAlignment="Top" />
+                            <Path Stroke="#FFDEBF96" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M117.20,64.00C129.40,67.00,142.10,64.20,154.40,65.80C158.90,66.40,162.90,68.70,166.80,71.10C168.50,74.60,170.30,78.20,170.50,82.10C170.80,86.50,170.40,90.90,170.80,95.20C174.20,94.70,177.50,93.40,180.90,93.30C184.00,93.40,186.60,96.10,186.70,99.10C186.80,103.40,185.20,107.70,183.20,111.40C182.30,113.40,180.00,115.10,180.50,117.50L180.50,118.00C180.30,118.10,179.80,118.50,179.50,118.70C176.10,120.70,174.90,124.60,172.50,127.50C168.10,132.80,164.20,138.70,157.90,141.80C151.70,145.10,146.00,149.70,138.90,151.00C137.30,150.90,135.70,150.70,134.10,150.60C130.90,149.50,127.70,148.10,124.90,146.10C122.20,142.70,119.90,138.90,117.80,135.10C111.40,119.60,109.90,102.60,110.90,86.00C111.60,78.40,113.00,70.40,117.20,64.00z" Margin="0,0,51.775,93.425" >
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.575,0.575">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2.541" ScaleY="2.541"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="-0.496" Y="-0.482"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FFE5BE9A" Offset="0"/>
+                                        <GradientStop Color="#FF78522C" Offset="1"/>
+                                        <GradientStop Color="#FFD9B391" Offset="0.192"/>
+                                        <GradientStop Color="#FFD2AA84" Offset="0.216"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF85643B" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M92.40,92.60C94.40,87.00,94.70,81.00,96.70,75.40C101.30,80.90,103.10,88.10,104.30,95.00C105.00,104.30,98.70,113.40,89.90,116.40C88.70,113.00,88.40,109.30,85.70,106.60C88.00,101.90,90.80,97.50,92.40,92.60z" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.297,0.292">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="0.845" ScaleY="0.892"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.06" Y="0.084"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF775E34" Offset="0.472"/>
+                                        <GradientStop Color="#FF574628" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Fill="#FFB49067" Stroke="#FFB49067" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M54.70,109.20C54.70,109.30,54.90,109.50,55.00,109.60C54.90,109.50,54.70,109.30,54.70,109.20z" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                            <Path Stroke="#FFB49067" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M55.00,109.60C62.30,114.60,72.10,115.10,80.20,111.90C80.20,112.60,80.10,114.10,80.00,114.80C78.80,120.60,79.30,126.50,80.10,132.30C78.20,135.30,77.90,138.80,77.90,142.20C71.50,144.30,64.70,143.30,58.10,143.10C52.70,134.20,49.00,124.20,47.70,113.90C50.50,113.60,53.20,113.30,56.00,113.00C55.70,111.80,55.30,110.70,55.00,109.60z" HorizontalAlignment="Left" Margin="0,0,0,100.913" >
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.569,0.395">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.682" ScaleY="1.2"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.194" Y="-0.102"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF9A744E" Offset="0"/>
+                                        <GradientStop Color="#FFB89873" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF94B96F" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M40.20,112.20C42.70,112.80,45.20,113.40,47.70,113.90C49.00,124.20,52.70,134.20,58.10,143.10C62.70,151.60,67.70,160.10,69.60,169.70C71.50,177.40,74.20,185.00,74.10,193.00C66.10,191.60,58.10,194.10,50.00,193.70C42.30,193.40,34.50,194.20,26.90,193.00C22.50,192.50,17.90,190.90,13.60,192.60C12.20,193.00,11.10,191.70,10.00,191.10C4.80,188.00,1.00,182.20,1.20,176.10C1.30,166.90,1.10,157.60,3.90,148.80C6.80,140.30,12.80,133.30,19.30,127.30C25.60,121.40,33.00,116.80,40.20,112.20z" HorizontalAlignment="Left" Margin="0,0,0,50.725" >
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.355,0.506">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.833" ScaleY="1.287"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.173" Y="-0.094"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF97BD71" Offset="0.192"/>
+                                        <GradientStop Color="#FF648741" Offset="1"/>
+                                        <GradientStop Color="#FF88AF62" Offset="0.472"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF94B96F" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M80.00,114.80C92.00,118.90,105.00,122.50,114.00,131.90C119.50,138.60,124.80,146.90,124.10,155.80C119.20,159.20,114.60,163.20,111.30,168.20C107.90,173.30,106.00,179.20,104.20,185.00C96.40,189.70,86.90,189.30,78.90,193.40C78.20,188.80,80.40,184.40,80.70,179.80C81.70,169.50,82.80,159.20,81.20,148.90C80.50,145.40,81.80,141.90,82.00,138.40C81.70,136.30,80.80,134.30,80.10,132.30C79.30,126.50,78.80,120.60,80.00,114.80z" Margin="0,0,114.375,51.001" >
+                                <Path.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="#FF8EB468" Offset="0"/>
+                                        <GradientStop Color="#FF7A9F53" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Stroke="#FF85643B" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M172.50,127.50C174.90,124.60,176.10,120.70,179.50,118.70C179.90,126.00,181.00,133.20,183.20,140.20C182.40,151.40,174.60,160.70,166.20,167.50C165.80,167.70,165.10,168.10,164.70,168.40C164.60,168.40,164.40,168.50,164.20,168.60C159.20,171.20,153.50,174.10,147.70,172.60C145.20,172.20,143.10,170.70,141.30,168.90C138.20,165.30,138.40,160.30,138.50,155.80C138.60,154.20,138.80,152.60,138.90,151.00C146.00,149.70,151.70,145.10,157.90,141.80C164.20,138.70,168.10,132.80,172.50,127.50z" Margin="0,0,55.275,71.452" >
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.468,0.516">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.398" ScaleY="1.473"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.052" Y="-0.105"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF6B451F" Offset="0"/>
+                                        <GradientStop Color="#FF8C6F4F" Offset="1"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Fill="#FF777C82" Stroke="#FF777C82" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M77.90,142.20C77.90,138.80,78.20,135.30,80.10,132.30C80.80,134.30,81.70,136.30,82.00,138.40C81.80,141.90,80.50,145.40,81.20,148.90C82.80,159.20,81.70,169.50,80.70,179.80C80.40,184.40,78.20,188.80,78.90,193.40C78.30,194.90,77.50,196.30,76.70,197.70C76.20,197.60,75.20,197.40,74.70,197.30C74.50,196.20,74.30,195.10,74.20,194.00C74.60,194.10,75.40,194.30,75.80,194.40C78.00,184.70,77.40,174.80,78.60,165.10C78.80,157.50,79.00,149.80,77.90,142.20z" HorizontalAlignment="Left" Margin="0,0,0,46.72" />
+                            <Path Stroke="#FF8AAED5" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M183.20,140.20C190.70,143.10,197.50,147.50,204.30,151.60C206.90,153.70,210.60,154.80,212.00,157.90C214.30,163.60,218.80,167.90,221.80,173.20C225.20,178.00,226.30,183.80,227.60,189.40C230.10,199.10,231.50,209.00,232.00,219.00C231.70,223.20,231.30,228.90,226.80,230.80C221.00,234.00,214.40,235.30,208.10,237.20C199.70,239.90,190.80,241.20,182.00,241.10C176.40,241.00,170.90,242.10,165.30,241.40C156.70,240.40,148.30,238.40,140.00,236.20C141.30,234.20,142.10,231.90,142.40,229.50C145.10,213.50,148.80,197.30,156.80,182.90C159.20,177.30,163.50,172.90,166.20,167.50C174.60,160.70,182.40,151.40,183.20,140.20z" Margin="0,0,6.475,2.791" >
+                                <Path.Fill>
+                                    <RadialGradientBrush>
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="1.18" ScaleY="1.18"/>
+                                                <SkewTransform AngleX="0" AngleY="0" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.066" Y="-0.024"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF688BAF" Offset="1"/>
+                                        <GradientStop Color="#FFA4C5E6" Offset="0"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Fill="#FFD0E9DE" Stroke="#FFFDFEFE" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M58.10,143.10C64.70,143.30,71.50,144.30,77.90,142.20C79.00,149.80,78.80,157.50,78.60,165.10C77.40,174.80,78.00,184.70,75.80,194.40C75.40,194.30,74.60,194.10,74.20,194.00L74.10,193.00C74.20,185.00,71.50,177.40,69.60,169.70C67.70,160.10,62.70,151.60,58.10,143.10z" HorizontalAlignment="Left" Margin="0,0,0,50.015" />
+                            <Path Stroke="#FF8AAED5" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M124.10,155.80C127.30,153.90,130.70,152.10,134.10,150.60C135.70,150.70,137.30,150.90,138.90,151.00C138.80,152.60,138.60,154.20,138.50,155.80C135.70,164.30,135.10,173.20,133.90,182.00C132.50,191.30,133.00,200.70,133.20,210.10C133.40,217.70,135.20,225.30,134.80,233.00C130.00,231.70,125.70,228.90,121.10,226.80C115.20,223.80,109.70,219.70,105.60,214.40C102.50,210.30,102.40,204.90,101.90,200.00C101.70,198.20,101.80,196.50,102.40,194.90C103.40,191.70,103.80,188.30,104.20,185.00C106.00,179.20,107.90,173.30,111.30,168.20C114.60,163.20,119.20,159.20,124.10,155.80z" Margin="0,0,99.572,11.412" >
+                                <Path.Fill>
+                                    <RadialGradientBrush GradientOrigin="0.429,0.434">
+                                        <RadialGradientBrush.RelativeTransform>
+                                            <TransformGroup>
+                                                <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2.005" ScaleY="1.323"/>
+                                                <SkewTransform AngleX="0" AngleY="-0.372" CenterX="0.5" CenterY="0.5"/>
+                                                <RotateTransform Angle="0" CenterX="0.5" CenterY="0.5"/>
+                                                <TranslateTransform X="0.341" Y="-0.005"/>
+                                            </TransformGroup>
+                                        </RadialGradientBrush.RelativeTransform>
+                                        <GradientStop Color="#FF6892B6" Offset="1"/>
+                                        <GradientStop Color="#FFA3C8EB" Offset="0"/>
+                                    </RadialGradientBrush>
+                                </Path.Fill>
+                            </Path>
+                            <Path Fill="#FF4A6588" Stroke="#FF777C82" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M133.90,182.00C135.10,173.20,135.70,164.30,138.50,155.80C138.40,160.30,138.20,165.30,141.30,168.90C139.40,172.30,139.70,176.30,139.20,180.00C138.80,187.00,137.10,193.90,137.30,201.00C137.40,212.40,136.40,223.90,137.70,235.30C138.30,235.50,139.50,236.00,140.00,236.20C148.30,238.40,156.70,240.40,165.30,241.40C170.90,242.10,176.40,241.00,182.00,241.10C190.80,241.20,199.70,239.90,208.10,237.20C214.40,235.30,221.00,234.00,226.80,230.80C231.30,228.90,231.70,223.20,232.00,219.00C231.50,209.00,230.10,199.10,227.60,189.40C226.30,183.80,225.20,178.00,221.80,173.20C218.80,167.90,214.30,163.60,212.00,157.90C215.10,158.80,217.30,161.30,219.70,163.30C225.80,168.50,231.30,175.10,233.10,183.10C235.80,193.50,238.90,204.10,238.40,215.00C238.20,219.30,238.90,223.60,238.10,227.80C236.50,231.80,232.70,234.20,229.20,236.30C219.60,241.30,208.60,242.30,198.00,244.30C189.40,244.60,180.70,244.30,172.00,244.40C158.70,243.00,145.10,241.20,133.00,235.10C122.60,230.00,111.00,225.90,103.70,216.30C99.60,211.80,101.40,205.40,101.10,200.00L101.90,200.00C102.40,204.90,102.50,210.30,105.60,214.40C109.70,219.70,115.20,223.80,121.10,226.80C125.70,228.90,130.00,231.70,134.80,233.00C135.20,225.30,133.40,217.70,133.20,210.10C133.00,200.70,132.50,191.30,133.90,182.00z" />
+                            <Path Fill="#FFDEE8FA" Stroke="#FFFDFEFE" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M164.70,168.40C165.10,168.10,165.80,167.70,166.20,167.50C163.50,172.90,159.20,177.30,156.80,182.90C148.80,197.30,145.10,213.50,142.40,229.50C142.10,231.90,141.30,234.20,140.00,236.20C139.50,236.00,138.30,235.50,137.70,235.30C136.40,223.90,137.40,212.40,137.30,201.00C137.10,193.90,138.80,187.00,139.20,180.00C139.70,176.30,139.40,172.30,141.30,168.90C143.10,170.70,145.20,172.20,147.70,172.60C153.50,174.10,159.20,171.20,164.20,168.60C164.40,168.50,164.60,168.40,164.70,168.40z" Margin="0,0,72.219,8.215" />
+                            <Path Fill="#FF8AAED5" Stroke="#FF8AAED5" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M164.20,168.60C164.40,168.50,164.60,168.40,164.70,168.40C164.60,168.40,164.40,168.50,164.20,168.60z" Margin="0,0,73.64,75.749" />
+                            <Path Fill="#FF5C6751" Stroke="#FF5C6751" StrokeThickness="0.09" StrokeStartLineCap="Flat" StrokeEndLineCap="Flat" StrokeDashCap="Flat" StrokeLineJoin="Miter" StrokeMiterLimit="4" StrokeDashOffset="0" Data="F1M78.90,193.40C86.90,189.30,96.40,189.70,104.20,185.00C103.80,188.30,103.40,191.70,102.40,194.90C96.30,197.40,89.70,198.90,83.00,199.40C72.00,199.40,61.00,199.40,50.00,199.40C44.20,199.30,38.40,199.80,32.70,198.60C26.20,197.40,19.00,196.70,13.60,192.60C17.90,190.90,22.50,192.50,26.90,193.00C34.50,194.20,42.30,193.40,50.00,193.70C58.10,194.10,66.10,191.60,74.10,193.00L74.20,194.00C74.30,195.10,74.50,196.20,74.70,197.30C75.20,197.40,76.20,197.60,76.70,197.70C77.50,196.30,78.30,194.90,78.90,193.40z" HorizontalAlignment="Left" Margin="0,0,0,45.012" />
+                        </Grid>
+                    </Viewbox>
+                </Grid>
+            </Viewbox>
+        </Grid>
+    </Border>
+</Page>

@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="" lang=""><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<meta name="keywords" content=" Reversing Windows hook chains, reversing,cracking,fravia,rce,softice,ida,forum,bbs,discussion,bulletin board">
+	<meta name="description" content="[Archive]  Reversing Windows hook chains Advanced reversing and programming">
+	
+	<title> Reversing Windows hook chains [Archive]  - RCE Messageboard's Regroupment</title>
+	<link rel="stylesheet" type="text/css" href="forum%20about%20linked%20list%20of%20hooks_files/archive.css">
+</head>
+<body>
+<div class="pagebody">
+<a href=""><img src="forum%20about%20linked%20list%20of%20hooks_files/vbulletin3_logo_archive.png" border="0"></a><p></p><div id="navbar"><a href="http://www.woodmann.com/forum/archive/index.php?s=6a123c83b542337d0be3fa1220a3db32&amp;api=1">RCE Messageboard's Regroupment</a> &gt; <a href="http://www.woodmann.com/forum/archive/index.php/f-52.html?s=6a123c83b542337d0be3fa1220a3db32">Forums</a> &gt; <a href="http://www.woodmann.com/forum/archive/index.php/f-2.html?s=6a123c83b542337d0be3fa1220a3db32">Advanced reversing and programming</a> &gt;  Reversing Windows hook chains</div>
+<hr>
+<div class="pda"><a href="http://www.woodmann.com/forum/archive/index.php/t-11537.html?s=6a123c83b542337d0be3fa1220a3db32&amp;api=1&amp;pda=1" rel="nofollow">PDA</a></div>
+<p class="largefont">View Full Version : <a href="http://www.woodmann.com/forum/showthread.php?t=11537">Reversing Windows hook chains</a></p>
+<hr>
+
+<div class="post"><div class="posttop"><div class="username">BlackBerry</div><div class="date">April 5th, 2008, 04:34</div></div><div class="posttext">Hello,<br>
+<br>
+I was doing some Windows reversing about Windows hooks that can be set thru SetWindowsHookEx. <br>
+<br>
+I saw that, after a call to SetWindowsHookEx, there's a direct call thru KiFastSystemCall to Win32k!NtUserSetWindowsHookEx.<br>
+<br>
+Now, I'm going to reverse this but, anyway, I try to ask if anyone has already did it and could help me.<br>
+<br>
+Every hook, global or local, is added in a hook chain, a linked list 
+checked by Windows to have hooks working. Every new hook is added to the
+ head of the this linked list.<br>
+<br>
+Has anyone already reversed the struct used by Windows for this linked 
+list and where the function NtUserSetWindowsHookEx gets the address to 
+the head of this linked list? <br>
+<br>
+I wasn't looking for the struct used for different kind of hooks - those
+ are already documented by Microsoft. I'm looking for the struct used to
+ define the linked list where the hooks are added. <br>
+<br>
+Many thanks in advance <img src="forum%20about%20linked%20list%20of%20hooks_files/smile.gif" border="0"></div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">omega_red</div><div class="date">April 5th, 2008, 05:04</div></div><div class="posttext">Is
+ there any such list at all? As far as I know, hook procedures are 
+responsible for calling previous hooks to form the chain, just like in 
+window subclassing.<br>
+<br>
+<div style="margin:20px; margin-top:5px; "><div class="smallfont" style="margin-bottom:2px">Quote:</div><table border="1" cellpadding="6" cellspacing="0" width="90%"><tbody><tr><td class="alt2" style="border: 1px inset;"><i>Calling
+ the CallNextHookEx function to chain to the next hook procedure is 
+optional, but it is highly recommended; otherwise, other applications 
+that have installed hooks will not receive hook notifications and may 
+behave incorrectly as a result. You should call CallNextHookEx unless 
+you absolutely need to prevent the notification from being seen by other
+ applications. <br>
+</i></td></tr></tbody></table></div></div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">BlackBerry</div><div class="date">April 5th, 2008, 05:14</div></div><div class="posttext">Hi, many thanks for your reply <img src="forum%20about%20linked%20list%20of%20hooks_files/smile.gif" border="0"><br>
+<br>
+It should be what is defined in ReactOS as:<br>
+<div style="margin:20px; margin-top:5px"><div class="smallfont" style="margin-bottom:2px">Code:</div><pre class="alt2" style="margin:0px; padding:6px; border:solid 1px; width:90%; height:80px; overflow:auto"><div dir="ltr" style="text-align:left;"><br>
+PHOOK Hook;<br>
+PHOOKTABLE Table;</div></pre></div><br>
+<br>
+with PHOOK defined as:<br>
+<div style="margin:20px; margin-top:5px"><div class="smallfont" style="margin-bottom:2px">Code:</div><pre class="alt2" style="margin:0px; padding:6px; border:solid 1px; width:90%; height:80px; overflow:auto"><div dir="ltr" style="text-align:left;"><br>
+LIST_ENTRY 	Chain<br>
+HHOOK 	Self<br>
+PETHREAD 	Thread<br>
+int 	HookId<br>
+HOOKPROC 	Proc<br>
+BOOLEAN 	Ansi<br>
+ULONG 	Flags<br>
+UNICODE_STRING 	ModuleName</div></pre></div><br>
+<br>
+and PHOOKTABLE as:<br>
+<div style="margin:20px; margin-top:5px"><div class="smallfont" style="margin-bottom:2px">Code:</div><pre class="alt2" style="margin:0px; padding:6px; border:solid 1px; width:90%; height:80px; overflow:auto"><div dir="ltr" style="text-align:left;"><br>
+LIST_ENTRY 	Hooks [NB_HOOKS]<br>
+UINT 	Counts [NB_HOOKS]<br>
+</div></pre></div></div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">dELTA</div><div class="date">April 7th, 2008, 05:34</div></div><div class="posttext"><div style="margin:20px; margin-top:5px; "><div class="smallfont" style="margin-bottom:2px">Quote:</div><table border="1" cellpadding="6" cellspacing="0" width="90%"><tbody><tr><td class="alt2" style="border: 1px inset;"><i>[Originally
+ Posted by omega_red]Is there any such list at all? As far as I know, 
+hook procedures are responsible for calling previous hooks to form the 
+chain, just like in window subclassing.</i></td></tr></tbody></table></div>Yes,
+ there should indeed be such a list. Ring 3 applications may be 
+responsible for having the OS execute the rest of the handlers in every 
+specific hook call instance, but it's still the OS that keeps track of 
+the addresses of these handlers, in this list.</div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">Kayaker</div><div class="date">April 7th, 2008, 08:48</div></div><div class="posttext">I
+ seem to remember tracing SetWindowsHookEx / CallNextHookEx and finding 
+such a table(s) referenced deep in kernel mode.  Personally I never 
+followed up on it to sort it all out.<br>
+<br>
+However...<br>
+<br>
+Any application-defined hook procedure on my machine?<br>
+http://zairon.wordpress.com/2006/12/06/any-application-defined-hook-procedure-on-my-machine/</div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">BlackBerry</div><div class="date">April 7th, 2008, 19:32</div></div><div class="posttext">Hello!<br>
+<br>
+Still many thanks to everyone for your precious posts <img src="forum%20about%20linked%20list%20of%20hooks_files/smile.gif" border="0"><br>
+<br>
+Yes, going on with reversing I reached HMAllocObject and PHOOK structure.<br>
+<br>
+The problem is still to get to aphkStart, 'cause DESKTOPINFO structure is totally undocumented. <img src="forum%20about%20linked%20list%20of%20hooks_files/frown.gif" border="0"></div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">Kayaker</div><div class="date">April 7th, 2008, 23:34</div></div><div class="posttext">Oh, it's surprising what you can find on this board <img src="forum%20about%20linked%20list%20of%20hooks_files/wink.gif" border="0"><br>
+<br>
+<div style="margin:20px; margin-top:5px"><div class="smallfont" style="margin-bottom:2px">Code:</div><pre class="alt2" style="margin:0px; padding:6px; border:solid 1px; width:90%; height:80px; overflow:auto"><div dir="ltr" style="text-align:left;">typedef struct _DESKTOPINFO { <br>
+    PVOID            pvDesktopBase; <br>
+    PVOID            pvDesktopLimit; <br>
+    struct WND        *spwnd; <br>
+    DWORD            fsHooks; <br>
+    struct HOOK        *aphkStart[CWINHOOKS]; <br>
+    struct WND        *spwndShell; <br>
+    PPROCESSINFO        ppiShellProcess; <br>
+    struct WND        *spwndBkGnd; <br>
+    struct WND        *spwndTaskman; <br>
+    struct WND        *spwndProgman; <br>
+    int            nShellHookPwnd <br>
+    struct WND        **papwndShellHook; <br>
+    int            cntMBox; <br>
+} DESKTOPINFO, *PDESKTOPINFO; </div></pre></div><br>
+<br>
+http://www.woodmann.com/forum/showthread.php?t=9643<br>
+<br>
+Don't take the structure as currently definitive.<br>
+<br>
+Perhaps you can document your findings when you are done?</div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">Kalimako</div><div class="date">September 10th, 2008, 13:41</div></div><div class="posttext">Hello, I get the PHOOK pointer on desktop struct in order to get all global hooks<br>
+<br>
+<br>
+ so, I get this struct:<br>
+<br>
+typedef struct tagHOOK {<br>
+    THRDESKHEAD head;<br>
+    struct tagHOOK* pNext;<br>
+    int iHook;<br>
+    PVOID pfn;<br>
+    UINT flags;<br>
+    int imod;<br>
+    PTHREADINFO     ptiHooked;<br>
+    PDESKTOP        rpdesk;<br>
+} HOOK;<br>
+<br>
+ but I have no idea how to get the <b>module </b>where the hook-function is located.<br>
+ there is a "imod" member, I assume that integer is an index in a module list, but I have no idea...<br>
+<br>
+ any ideas please?</div></div><hr>
+
+
+<div class="post"><div class="posttop"><div class="username">Kayaker</div><div class="date">September 11th, 2008, 22:39</div></div><div class="posttext">Read Zairon's blog I posted above and you'll find what imod is.  Also a possible method of finding the originator of the hook.</div></div><hr>
+
+
+<div id="copyright">Powered by vBulletin&#8482; Version 4.1.2 Copyright © 2011 vBulletin Solutions, Inc. All rights reserved.</div>
+</div>
+
+</body></html>
